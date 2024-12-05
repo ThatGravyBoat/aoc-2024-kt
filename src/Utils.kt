@@ -19,3 +19,8 @@ fun String.md5() = BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteA
  * The cleaner shorthand for printing output.
  */
 fun Any?.println() = println(this)
+
+fun Sequence<Boolean>.isTrue(): Boolean = this.all { it }
+
+fun <T> Collection<T>.isSortedBy(predicate: (a: T, b: T) -> Boolean): Boolean =
+    asSequence().zipWithNext(predicate).isTrue()
